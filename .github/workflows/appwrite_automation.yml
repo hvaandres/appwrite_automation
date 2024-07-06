@@ -6,12 +6,12 @@ on:
       item_type:
         description: 'Type of item to create'
         required: true
-        default: './bucket'
+        default: 'bucket'
         options:
-          - ./bucket
-          - ./collection
-          - ./attribute
-          - ./database
+          - bucket
+          - collection
+          - attribute
+          - database
       path:
         description: 'Path to create item'
         required: true
