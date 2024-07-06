@@ -14,11 +14,13 @@ import secrets
 db = Databases(client)
 
 # Create a new collection
+try:
+    admin_users = db.create_collection(
+        database_id = db_id,
+        collection_id = secrets.token_hex(8),
+        name = 'admin-users'
+    )
 
-admin_users = db.create_collection(
-    database_id = db_id,
-    collection_id = secrets.token_hex(8),
-    name = 'admin-users'
-)
-
-print(admin_users)
+    print(admin_users)
+except Exception as e:
+    print(f"Error: {e}")

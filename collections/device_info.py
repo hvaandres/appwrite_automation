@@ -16,10 +16,13 @@ from appwrite.services.databases import Databases
 db = Databases(client)
 
 # Create a new collection
-device_info = db.create_collection(
-    database_id=db_id,
-    collection_id=secrets.token_hex(8),
-    name='device-info'
-)
+try:
+    device_info = db.create_collection(
+        database_id=db_id,
+        collection_id=secrets.token_hex(8),
+        name='device-info'
+    )
 
-print(device_info)
+    print(device_info)
+except Exception as e:
+    print(f"Error: {e}")

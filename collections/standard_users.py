@@ -15,15 +15,18 @@ db = Databases(client)
 
 # Create a new collection
 
-standard_users = db.create_collection(
-    database_id = db_id,
-    collection_id = secrets.token_hex(8),
-    name = 'standard-users',
-    permissions = [
-        Permission.create(Role.users()),
-        Permission.read(Role.users()),
-        Permission.update(Role.users())
-    ]
-)
+try:
+    standard_users = db.create_collection(
+        database_id = db_id,
+        collection_id = secrets.token_hex(8),
+        name = 'standard-users',
+        permissions = [
+            Permission.create(Role.users()),
+            Permission.read(Role.users()),
+            Permission.update(Role.users())
+        ]
+    )
 
-print(standard_users)
+    print(standard_users)
+except Exception as e:
+    print(f"Error: {e}")

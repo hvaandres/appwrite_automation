@@ -16,10 +16,14 @@ from appwrite.services.databases import Databases
 db = Databases(client)
 
 # Create a new collection
-file_upload = db.create_collection(
-    database_id=db_id,
-    collection_id=secrets.token_hex(8),
-    name='file_upload'
-)
 
-print(file_upload)
+try:
+    # Example: Creating a collection
+    file_upload = db.create_collection(
+        database_id=db_id,
+        collection_id=secrets.token_hex(8),
+        name='file_upload'
+    )
+    print(file_upload)
+except Exception as e:
+    print(f"Error: {e}")
