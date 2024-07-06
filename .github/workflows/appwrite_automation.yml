@@ -18,10 +18,18 @@ on:
       file_name:
         description: 'Name of file to create item'
         required: false
+      environment:
+        description: 'Environment to use (dev or prod)'
+        required: true
+        default: 'dev'
+        options:
+          - dev
+          - prod
 
 jobs:
   create_item:
     runs-on: ubuntu-latest
+
     env:
       APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
       APPWRITE_BUCKET_ID: ${{ secrets.APPWRITE_BUCKET_ID }}
@@ -32,7 +40,7 @@ jobs:
       APPWRITE_DB_ID: ${{ secrets.APPWRITE_DB_ID }}
       APPWRITE_ENDPOINT: ${{ secrets.APPWRITE_ENDPOINT }}
       APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
-
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -47,19 +55,12 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
-      
-      - name: Set up Appwrite
+
+      - name: Print Secrets
         run: |
-          echo "APPWRITE_API_KEY=${APPWRITE_API_KEY}" >> .env
-          echo "APPWRITE_ENDPOINT=${APPWRITE_ENDPOINT}" >> .env
-          echo "APPWRITE_PROJECT_ID=${APPWRITE_PROJECT_ID}" >> .env
-          echo "APPWRITE_COLLECTION_ADMIN_USERS_ID=${APPWRITE_COLLECTION_ADMIN_USERS_ID}" >> .env
-          echo "APPWRITE_COLLECTION_DEVICE_ID=${APPWRITE_COLLECTION_DEVICE_ID}" >> .env
-          echo "APPWRITE_COLLECTION_FILE_UPLOAD=${APPWRITE_COLLECTION_FILE_UPLOAD}" >> .env
-          echo "APPWRITE_COLLECTION_STANDARD_USERS_ID=${APPWRITE_COLLECTION_STANDARD_USERS_ID}" >> .env
-          echo "APPWRITE_BUCKET_ID=${APPWRITE_BUCKET_ID}" >> .env
-          echo "APPWRITE_DB_ID=${APPWRITE_DB_ID}" >> .env
-          echo "DB ID: ${{ secrets.APPWRITE_DB_ID }}"     
+          echo "API Key: ${{ secrets.APPWRITE_API_KEY }}"
+          echo "DB ID: ${{ secrets.APPWRITE_DB_ID }}"
+          # Add more secrets as needed
 
       - name: Run creation script
         run: |
