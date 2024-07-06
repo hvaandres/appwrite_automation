@@ -41,4 +41,5 @@ jobs:
       - name: Run creation script
         run: |
           source venv/bin/activate
-          python ${{ github.event.inputs.item_type }} ${{ github.event.inputs.path }} ${{ github.event.inputs.file_name }}
+          cd ${{ github.workspace }}/${{ github.event.inputs.path }}
+          python ${GITHUB_WORKSPACE}/${{ github.event.inputs.file_name }} ${{ github.event.inputs.item_type }} ${{ github.event.inputs.file_name }}
