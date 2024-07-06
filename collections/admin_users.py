@@ -14,8 +14,7 @@ db = Databases(client)
 admin_users = db.create_collection(
     database_id = db_id,
     collection_id = secrets.token_hex(8),
-    name = 'admin-users',
-    permission = 'role:admin'
+    name = 'admin-users'
 )
 
 print(admin_users)
