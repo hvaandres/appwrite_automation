@@ -39,4 +39,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run creation script
-        run: python main.py ${{ github.event.inputs.item_type }} ${{ github.event.inputs.path }} ${{ github.event.inputs.file_name }}
+        run: |
+          source venv/bin/activate
+          python main.py ${{ github.event.inputs.item_type }} ${{ github.event.inputs.path }} ${{ github.event.inputs.file_name }}
