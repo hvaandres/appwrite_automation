@@ -2,6 +2,9 @@ import sys
 import os
 # Add the parent directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from dotenv import load_dotenv
+load_dotenv()
+
 from main import client, db_id
 from appwrite.services.databases import Databases
 from appwrite.permission import Permission

@@ -6,6 +6,9 @@ import os
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(project_root)
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Now the main module can be imported
 from main import client, db_id
 from appwrite.services.databases import Databases
