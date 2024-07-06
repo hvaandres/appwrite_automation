@@ -6,25 +6,18 @@ on:
       item_type:
         description: 'Type of item to create'
         required: true
-        default: 'bucket'
+        default: './bucket'
         options:
-          - bucket
-          - collection
-          - attribute
-          - database
+          - ./bucket
+          - ./collection
+          - ./attribute
+          - ./database
       path:
         description: 'Path to create item'
         required: true
       file_name:
-        description: 'Name of the file to create (required for attribute, collection, or database)'
+        description: 'Name of file to create item'
         required: false
-      file_configuration:
-        description: 'Configuration of the file to create (required for attribute, collection, or database)'
-        required: true
-        default: 'main.py'
-        options:
-          - main.py
-          - main.json
 
 jobs:
   create_item:
@@ -48,4 +41,4 @@ jobs:
       - name: Run creation script
         run: |
           source venv/bin/activate
-          python ${{ github.event.inputs.file_configuration }} ${{ github.event.inputs.item_type }} ${{ github.event.inputs.path }} ${{ github.event.inputs.file_name }}
+          python ${{ github.event.inputs.item_type }} ${{ github.event.inputs.path }} ${{ github.event.inputs.file_name }}
