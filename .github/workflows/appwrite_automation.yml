@@ -28,9 +28,7 @@ on:
 
 jobs:
   create_item:
-    environment:
-      name: dev
-      url: https://github.com/hvaandres/appwrite_automation/settings/environments/3357156314
+    environment: dev
     runs-on: ubuntu-latest
 
     env:
