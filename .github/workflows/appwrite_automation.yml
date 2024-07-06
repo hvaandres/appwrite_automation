@@ -28,6 +28,9 @@ on:
 
 jobs:
   create_item:
+    environment:
+      name: dev
+      url: https://github.com/hvaandres/appwrite_automation/settings/environments/3357156314
     runs-on: ubuntu-latest
 
     env:
@@ -40,7 +43,7 @@ jobs:
       APPWRITE_DB_ID: ${{ secrets.APPWRITE_DB_ID }}
       APPWRITE_ENDPOINT: ${{ secrets.APPWRITE_ENDPOINT }}
       APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
