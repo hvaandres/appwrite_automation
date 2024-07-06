@@ -1,4 +1,4 @@
-name: AppWrite Automation
+name: Appwrite Automation
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       item_type:
         description: 'Type of item to create'
         required: true
-        default: 'collection'
+        default: 'bucket'
         options:
           - bucket
           - collection
@@ -31,6 +31,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
 
       - name: Run creation script
         run: python main.py ${{ github.event.inputs.item_type }} ${{ github.event.inputs.path }} ${{ github.event.inputs.file_name }}
