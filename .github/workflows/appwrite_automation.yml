@@ -1,4 +1,4 @@
-name: Create Items
+name: AppWrite Automation
 
 on:
   workflow_dispatch:
